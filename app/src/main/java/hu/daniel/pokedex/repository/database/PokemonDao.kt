@@ -1,4 +1,4 @@
-package hu.daniel.pokedex
+package hu.daniel.pokedex.repository.database
 
 import androidx.room.Dao
 import androidx.room.Query

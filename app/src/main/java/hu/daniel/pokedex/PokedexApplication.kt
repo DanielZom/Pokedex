@@ -2,6 +2,7 @@ package hu.daniel.pokedex
 
 import android.app.Application
 import com.facebook.stetho.Stetho
+import hu.daniel.pokedex.util.onDebug
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

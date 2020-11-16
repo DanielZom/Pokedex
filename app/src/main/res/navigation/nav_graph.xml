@@ -4,34 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/splashFragment">
-
     <fragment
         android:id="@+id/splashFragment"
-        android:name="hu.daniel.pokedex.SplashFragment"
-        android:label="Splash"
-        tools:layout="@layout/fragment_splash" >
+        android:name="hu.daniel.pokedex.presentation.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash">
         <action
-            android:id="@+id/action_splashFragment_to_pokeListFragment"
-            app:destination="@id/pokeListFragment" />
+            android:id="@+id/action_splashFragment_to_pokemonListFragment"
+            app:destination="@id/pokemonListFragment"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
     </fragment>
-
     <fragment
-        android:id="@+id/pokeListFragment"
-        android:name="hu.daniel.pokedex.PokeListFragment"
-        android:label="PokeList"
-        tools:layout="@layout/fragment_poke_list" >
+        android:id="@+id/pokemonListFragment"
+        android:name="hu.daniel.pokedex.presentation.pokemonlist.PokemonListFragment"
+        android:label="PokemonListFragment"
+        tools:layout="@layout/fragment_pokemon_list">
         <action
-            android:id="@+id/action_pokeListFragment_to_pokeDetailFragment"
-            app:destination="@id/pokeDetailFragment" />
+            android:id="@+id/action_pokemonListFragment_to_pokemonDetailFragment"
+            app:destination="@id/pokemonDetailFragment"
+            app:launchSingleTop="true" />
     </fragment>
-
     <fragment
-        android:id="@+id/pokeDetailFragment"
-        android:name="hu.daniel.pokedex.PokeDetailFragment"
-        android:label="PokeDetail"
-        tools:layout="@layout/fragment_poke_detail" >
+        android:id="@+id/pokemonDetailFragment"
+        android:name="hu.daniel.pokedex.presentation.PokemonDetailFragment"
+        android:label="PokemonDetailFragment"
+        tools:layout="@layout/fragment_pokemon_detail" >
         <action
-            android:id="@+id/action_pokeDetailFragment_to_pokeListFragment"
-            app:destination="@id/pokeListFragment" />
+            android:id="@+id/action_pokemonDetailFragment_to_pokemonListFragment"
+            app:destination="@id/pokemonListFragment"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
     </fragment>
 </navigation>

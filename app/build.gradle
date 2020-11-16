@@ -17,12 +17,15 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
+        freeCompilerArgs += ['-Xopt-in=kotlin.RequiresOptIn']
     }
 
     def baseURL = "https://pokeapi.co/api/v2/"
@@ -35,6 +38,9 @@ android {
         debug {
             buildConfigField("String", "API_BASE_URL", "\"$baseURL\"")
         }
+    }
+    buildFeatures {
+        dataBinding true
     }
 }
 
@@ -58,10 +64,13 @@ dependencies {
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$moshiConverterVersion"
 
     //Moshi
     implementation "com.squareup.moshi:moshi:$moshiVersion"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshiKotlinVersion"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiCodegenVersion"
 
     //Okhttp
     //noinspection GradleDependency
@@ -93,4 +102,7 @@ dependencies {
     //Kotlin coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesCoreVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesAndroidVersion"
+
+    //Paging 3
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
 }

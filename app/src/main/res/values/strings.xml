@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Pokedex</string>
+    <string name="content_description_pokemon_image">Pokemon image</string>
+    <string name="retry">Retry</string>
+    <string name="weight">Weight</string>
+    <string name="height">Height</string>
+    <string name="type">Type</string>
+    <string name="abilities">Abilities</string>
+    <string name="shiny">Shiny</string>
+    <string name="normal">Normal</string>
+    <string name="content_description_back">back</string>
 </resources>
