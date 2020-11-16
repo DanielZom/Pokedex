@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -17,24 +18,33 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
+        freeCompilerArgs += ['-Xopt-in=kotlin.RequiresOptIn']
     }
 
     def baseURL = "https://pokeapi.co/api/v2/"
+    def appcenterKey = "c3583c52-6a52-419f-8044-1985a1454932"
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "API_BASE_URL", "\"$baseURL\"")
+            buildConfigField("String", "APPCENTER_KEY", "\"$appcenterKey\"")
         }
         debug {
             buildConfigField("String", "API_BASE_URL", "\"$baseURL\"")
+            buildConfigField("String", "APPCENTER_KEY", "\"$appcenterKey\"")
         }
+    }
+    buildFeatures {
+        dataBinding true
     }
 }
 
@@ -62,6 +72,8 @@ dependencies {
 
     //Moshi
     implementation "com.squareup.moshi:moshi:$moshiVersion"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshiKotlinVersion"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiCodegenVersion"
 
     //Okhttp
     //noinspection GradleDependency
@@ -93,4 +105,11 @@ dependencies {
     //Kotlin coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesCoreVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesAndroidVersion"
+
+    //Paging 3
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+
+    //Appcenter
+    implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
+    implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
 }

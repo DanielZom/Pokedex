@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="hu.daniel.pokedex.R" />
+
+        <variable
+            name="pokemon"
+            type="hu.daniel.pokedex.domain.PokemonListItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pokemonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/pokemonImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/content_description_pokemon_image"
+            app:imageUrl="@{pokemon.pokemonDetails.images.defaultFront}"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.8"
+            tools:src="@drawable/pokeball_closed" />
+
+        <TextView
+            android:id="@+id/pokemonName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pokemon_solid"
+            android:gravity="center"
+            android:text="@{pokemon.name}"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/sp_20"
+            app:layout_constraintEnd_toEndOf="@id/pokemonImage"
+            app:layout_constraintStart_toStartOf="@id/pokemonImage"
+            app:layout_constraintTop_toBottomOf="@id/pokemonImage"
+            tools:text="Pikachu" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

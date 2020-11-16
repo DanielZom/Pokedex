@@ -3,25 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/blue">
 
     <ImageView
-        android:id="@+id/splashImage"
+        android:id="@+id/logo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="@string/content_description_splash_image"
-        android:src="@drawable/pokeball_closed"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:contentDescription="@string/content_description_pokemon_logo"
+        android:src="@drawable/pixel_logo"
+        app:layout_constraintDimensionRatio="2:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.4" />
 
-    <View
-        android:id="@+id/fadeLayer"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pokemonList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0"
-        android:background="@color/blue" />
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:spanCount="2"
+        tools:listitem="@layout/component_pokemon_list_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
