@@ -2,6 +2,7 @@ package hu.daniel.pokedex
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.coroutines.flow.flow
 
 class MainActivity: AppCompatActivity() {
 
