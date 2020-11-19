@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import hu.daniel.pokedex.BuildConfig
 import hu.daniel.pokedex.R
 import hu.daniel.pokedex.util.*
 import kotlinx.coroutines.delay
@@ -32,6 +33,7 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        versionNumber.text = BuildConfig.VERSION_NAME
         viewModel.startDownloadPokemonData()
         splashImage.onViewRendered {
             startScreenTimeout()

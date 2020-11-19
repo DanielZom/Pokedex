@@ -24,4 +24,15 @@
         android:alpha="0"
         android:background="@color/blue" />
 
+    <TextView
+        android:id="@+id/versionNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:textColor="@color/version_text"
+        android:layout_marginBottom="@dimen/dp_8"
+        tools:text="v0.1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
