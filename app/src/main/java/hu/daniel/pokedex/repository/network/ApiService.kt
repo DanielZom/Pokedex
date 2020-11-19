@@ -1,5 +1,7 @@
 package hu.daniel.pokedex.repository.network
 
+import hu.daniel.pokedex.domain.PokemonDetail
+import hu.daniel.pokedex.domain.ResponseData
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
