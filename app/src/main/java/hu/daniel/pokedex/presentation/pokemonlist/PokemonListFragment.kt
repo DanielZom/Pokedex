@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import hu.daniel.pokedex.R
 import hu.daniel.pokedex.presentation.PokemonViewModel
 import hu.daniel.pokedex.util.noop
@@ -25,7 +26,11 @@ class PokemonListFragment : Fragment() {
         disableFullscreenMode()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         startListItemImageUpdateObserving()
         return inflater.inflate(R.layout.fragment_pokemon_list, container, false)
     }
@@ -38,15 +43,15 @@ class PokemonListFragment : Fragment() {
 
     private fun startStateObserving() {
         viewModel.state
-                .onEach { state -> handleState(state) }
-                .launchIn(lifecycleScope)
+            .onEach { state -> handleState(state) }
+            .launchIn(lifecycleScope)
     }
 
     private fun configureList() {
         pokemonList.apply {
             adapter = listAdapter.withLoadStateHeaderAndFooter(
-                    PokemonListLoader { listAdapter.retry() },
-                    PokemonListLoader { listAdapter.retry() }
+                PokemonListLoader { listAdapter.retry() },
+                PokemonListLoader { listAdapter.retry() }
             )
         }
 
@@ -55,13 +60,32 @@ class PokemonListFragment : Fragment() {
                 listAdapter.submitData(it)
             }
         }
+
+        listAdapter.addLoadStateListener { loadState ->
+            if (loadState.source.refresh is LoadState.Error) {
+                configureListVisibility(listAdapter.itemCount > 0)
+            } else {
+                configureListVisibility(true)
+            }
+        }
+
+        retry.setOnClickListener { listAdapter.retry() }
+    }
+
+    private fun configureListVisibility(hasListItems: Boolean) {
+        if (hasListItems) {
+            errorLayout.visibility = View.GONE
+            pokemonList.visibility = View.VISIBLE
+        } else {
+            errorLayout.visibility = View.VISIBLE
+            pokemonList.visibility = View.GONE
+        }
     }
 
     private fun handleState(state: PokemonViewModel.State) {
         when (state) {
             PokemonViewModel.State.Idle -> noop(state.toString())
             PokemonViewModel.State.UserNavigatedToDetail -> noop(state.toString())
-            PokemonViewModel.State.UserCameBackFromDetail -> noop(state.toString())
         }
     }
 

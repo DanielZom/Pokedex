@@ -2,37 +2,27 @@ package hu.daniel.pokedex.presentation.pokemonlist
 
 import androidx.paging.PagingSource
 import hu.daniel.pokedex.domain.PokemonListItem
-import hu.daniel.pokedex.repository.ApiService
-import hu.daniel.pokedex.repository.pokemon.IPokemonRepository
-import timber.log.Timber
+import hu.daniel.pokedex.repository.DEFAULT_PAGING_OFFSET
+import hu.daniel.pokedex.repository.IPokemonRepository
+import java.lang.RuntimeException
 
-const val POKEMON_API_PAGE_SIZE = 50
 
 class PokemonPagingSource(
-        private val service: ApiService,
         private val pokemonRepository: IPokemonRepository
 ) : PagingSource<Int, PokemonListItem>() {
-    private val offset = 50
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PokemonListItem> {
         val nextPage = params.key ?: 0
-        return try {
-            val response = service.getPokemons(POKEMON_API_PAGE_SIZE, nextPage)
-            LoadResult.Page(
-                    data = response.results,
-                    prevKey = if (nextPage == 0) null else nextPage - offset,
-                    nextKey = nextPage + offset
-            )
-        } catch (e: Exception) {
-            val savedPokemons = pokemonRepository.getPokemons(POKEMON_API_PAGE_SIZE, nextPage)
-            if (savedPokemons.isNotEmpty()) {
+        val pokemons = pokemonRepository.getPokemons(nextPage)
+        return when {
+            pokemons == null -> LoadResult.Error(RuntimeException())
+            pokemons.isEmpty() -> LoadResult.Page(arrayListOf(), null, null)
+            else -> {
                 LoadResult.Page(
-                        data = savedPokemons,
-                        prevKey = if (nextPage == 0) null else nextPage - offset,
-                        nextKey = nextPage + offset
+                    data = pokemons,
+                    prevKey = if (nextPage == 0) null else nextPage - DEFAULT_PAGING_OFFSET,
+                    nextKey = nextPage + DEFAULT_PAGING_OFFSET
                 )
-            } else {
-                LoadResult.Error(e)
             }
         }
     }

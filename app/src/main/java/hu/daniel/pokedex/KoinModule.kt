@@ -5,8 +5,8 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import hu.daniel.pokedex.presentation.PokemonViewModel
 import hu.daniel.pokedex.repository.ApiService
-import hu.daniel.pokedex.repository.pokemon.IPokemonRepository
-import hu.daniel.pokedex.repository.pokemon.PokemonRepository
+import hu.daniel.pokedex.repository.IPokemonRepository
+import hu.daniel.pokedex.repository.PokemonRepository
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -20,8 +20,8 @@ val KoinModule = module {
     single { buildNewsOKHTTPClient() }
     single { moshi }
     single { provideService(get()) }
-    viewModel { PokemonViewModel(get(), get()) }
-    single <IPokemonRepository> { PokemonRepository(get()) }
+    viewModel { PokemonViewModel(get()) }
+    single <IPokemonRepository> { PokemonRepository(get(), get()) }
 }
 
 private fun provideMoshi(): Moshi = Moshi

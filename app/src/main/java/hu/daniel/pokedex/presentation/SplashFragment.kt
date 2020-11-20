@@ -39,9 +39,6 @@ class SplashFragment : Fragment() {
             startScreenTimeout()
             animateSplashImage()
         }
-        splashImage.setOnClickListener {
-            animateSplashImage()
-        }
     }
 
     private fun animateSplashImage() {
