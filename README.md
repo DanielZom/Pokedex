@@ -1,6 +1,7 @@
 # Pokedex
 
 Pokedex is an application where you can check out all of the existing Pokemons, and see their characteristic and some images of them.
+**The application supports only portrait mode, and it has night mode support (in terms of splash screen background and version number text color).**
 
 ## Development guidelines 
 https://epam-my.sharepoint.com/:w:/p/daniel_zombori/EdVAiJhCUiBAq27_qZltMIEBzOp5J60v3Yfs0tl45Szytw?e=pH8Q5f
