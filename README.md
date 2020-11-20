@@ -80,6 +80,7 @@ If I had more time I would develop these features:
         exclude group: "com.android.support"
     }
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshVersion" //for CircularProgressDrawable to indicate loading in Glide
 
     //Navigation - Android Jetpack Fragment,Activity navigation simplifier library
     implementation "androidx.navigation:navigation-fragment-ktx:$navVersion"
