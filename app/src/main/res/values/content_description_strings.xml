@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="content_description_back">back</string>
+    <string name="content_description_splash_image">splash image</string>
+    <string name="content_description_pokemon_logo">pokemon logo</string>
+    <string name="content_description_retry_button">retry</string>
+    <string name="content_description_pokemon_image">Pokemon image</string>
+</resources>
