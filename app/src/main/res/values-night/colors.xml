@@ -7,4 +7,5 @@
 
     <color name="blue">#3062a7</color>
     <color name="yellow">#facb04</color>
+    <color name="transparent">#00000000</color>
 </resources>

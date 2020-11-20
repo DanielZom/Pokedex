@@ -30,6 +30,8 @@
             app:layout_constraintWidth_percent="0.8"
             tools:src="@drawable/pokeball_closed" />
 
+
+
         <TextView
             android:id="@+id/pokemonName"
             android:layout_width="0dp"

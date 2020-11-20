@@ -26,11 +26,7 @@ class PokemonListFragment : Fragment() {
         disableFullscreenMode()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         startListItemImageUpdateObserving()
         return inflater.inflate(R.layout.fragment_pokemon_list, container, false)
     }
@@ -74,11 +70,11 @@ class PokemonListFragment : Fragment() {
 
     private fun configureListVisibility(hasListItems: Boolean) {
         if (hasListItems) {
-            errorLayout.visibility = View.GONE
-            pokemonList.visibility = View.VISIBLE
+            errorLayout?.visibility = View.GONE
+            pokemonList?.visibility = View.VISIBLE
         } else {
-            errorLayout.visibility = View.VISIBLE
-            pokemonList.visibility = View.GONE
+            errorLayout?.visibility = View.VISIBLE
+            pokemonList?.visibility = View.GONE
         }
     }
 

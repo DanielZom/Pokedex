@@ -98,6 +98,7 @@ dependencies {
         exclude group: "com.android.support"
     }
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshVersion"
 
     //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$navVersion"
